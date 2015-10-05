@@ -1,85 +1,89 @@
 #include <stdlib.h>
 #include <iostream>
-#include <conio.h>
+#include <string>
+#include <ctime>
 
 using namespace std;
 
-int main()
+void RSP(string choise)
 {
-    int a=0;
-    int player, bot;
-    while(a!=2)
+    srand(NULL);
+    srand(time(0));
+    int bot = rand()%3;
+    if (choise == "Rock")
     {
-        system("cls");
-        cout << "Rock -- 1" << endl;
-        cout << "Paper - 2" << endl;
-        cout << "Scissors - 3" << endl;
-        cout << "Your choice: ";
-        cin >> player;
-        bot = rand() % 3+1;
-        cout << "Bot -        " << bot << endl;
-        if(player == 1)
+        switch (bot)
         {
-            if(bot == 2)
+        case (0):
+            cout << endl << "Rock: " << "Draw!" << endl;
+            break;
+        case (1):
+            cout << endl << "Scissors: " << "Win!" << endl;
+            break;
+        case (2):
+            cout << endl << "Paper: " << "Loss!" << endl ;
+            break;
+        }
+    }
+    else
+    {
+        if (choise == "Scissors")
+        {
+            switch (bot)
             {
-                cout << endl << "LOSER!!!!";
-            }
-            else
-            {
-                if(bot == 3)
-                {
-                    cout << endl << "WIN !!!";
-                }
-                else
-                {
-                    cout << "Try again";
-                }
+            case (1):
+                cout << endl << "Scissors: " << "Draw!" << endl;
+                break;
+            case (2):
+                cout << endl << "Paper: " << "Win!" << endl;
+                break;
+            case (0):
+                cout << endl << "Rock: " << "Loss!" << endl;
+                break;
             }
         }
         else
         {
-            if(player == 2)
+            switch (bot)
             {
-                if(bot == 3)
-                {
-                    cout << endl << "LOSER!!!!";
-                }
-                else
-                {
-                    if(bot == 1)
-                    {
-                        cout << endl << "WIN !!!";
-                    }
-                    else
-                    {
-                        cout << "Try again";
-                    }
-                }
-            }
-            else
-            {
-                if(bot == 1)
-                {
-                    cout << endl << "LOSER!!!!";
-                }
-                else
-                {
-                    if(bot == 2)
-                    {
-                        cout << endl << "WIN !!!";
-                    }
-                    else
-                    {
-                        cout << "Try again";
-                    }
-                }
+            case (2):
+                cout << endl << "Paper: " << "Draw!" << endl;
+                break;
+            case (0):
+                cout << endl << "Rock: " << "Win!" << endl;
+                break;
+            case (1):
+                cout << endl << "Scissors: " << "Loss!" << endl;
+                break;
             }
         }
-        getch();
+    }
+}
+
+int number(int a, char *b[])
+{
+    for(int i=0; i<a; i++)
+    {
+        if(b[i][0] == '-' && b[i][1] == 't')
+        {
+            int t = atoi(b[i+1]);
+            return t;
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    string choise;
+
+    int num = number(argc, argv);
+    for (int i=0; i<num;i++)
+    {
+        cout << "Enter Rock, Scissors or Paper: ";
+        cin >> choise;
+        RSP(choise);
+        system("pause");
         system("cls");
-        cout << "New game -- 1" << endl;
-        cout << "Exit ------ 2" << endl;
-        cin >> a;
     }
     return 0;
 }
